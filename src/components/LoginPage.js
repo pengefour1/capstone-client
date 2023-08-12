@@ -46,6 +46,9 @@ const LoginPage = () => {
         setLogin(true);
         setSignIn(false);
 
+      }else{
+        setLogin(false);
+        setSignIn(false);
       }
       
    
