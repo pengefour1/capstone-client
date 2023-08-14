@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import './App.css'
 
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
@@ -49,10 +49,10 @@ const router = createBrowserRouter([
 const App = () => {
   const [openChat, setOpenChat] = useState(false);
   return (
-    <div className='relative'>
+    <div className='relative '>
       <RouterProvider router={router} />
-      <BsFillChatLeftFill style={{color:"black", height:'40px', width:'40px', bottom:"5px", right:'5px', position:"fixed", cursor:"pointer" }} onClick={()=>setOpenChat(!openChat)} ></BsFillChatLeftFill>
-      <div className='absolute z-50'>
+      <BsFillChatLeftFill className='chaticon' onClick={()=>setOpenChat(!openChat)} ></BsFillChatLeftFill>
+      <div className='absolute z-50 '>
         {openChat ? <Chat/>: ''}
       </div>
       

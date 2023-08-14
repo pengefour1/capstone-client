@@ -1,5 +1,8 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { CartContext } from '../context/CartContext'
+import axios from 'axios'
+import { LoginContext } from '../context/LoginContext'
 
 
 const Payment = () => {
@@ -8,6 +11,25 @@ const Payment = () => {
     const [expiry, setExpiry] = useState('')
     const [cvv, setCvv] = useState('')
     const [focus, setFocus] = useState('')
+    const {cart}= useContext(CartContext)
+    const {currentUser} = useContext(LoginContext)
+
+    async function saveToCart (){
+      let arr=[];
+      for(let i=0;i<cart.length;i++){
+        arr[i]=cart[i].attributes.title
+      }
+      console.log(arr);
+      console.log(currentUser.username);
+      let packedData={
+        username:currentUser.username,
+        cart:arr,
+      }
+      await axios.post('http://localhost:8000/update',packedData).then(()=>console.log('updated cart'));
+      
+
+
+    }
 
   return (
     <div className='flex justify-center'>
@@ -51,7 +73,7 @@ const Payment = () => {
               
         </form>
         <Link to='/login'>
-//        <button className='text-black '>pay</button>
+//        <button className='text-black ' onClick={()=>saveToCart()}>pay</button>
 //      </Link>
 
       </div>

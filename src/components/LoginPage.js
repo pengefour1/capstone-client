@@ -12,7 +12,7 @@ import { CartContext } from "../context/CartContext";
 const LoginPage = () => {
   // React States
   const {cart} = useContext(CartContext)
-  const {login, setLogin} = useContext(LoginContext)
+  const {login, setLogin, currentUser, setCurrentUser} = useContext(LoginContext)
   const [signIn, setSignIn] = useState(true);
   const [signUp, setSignUp] = useState(false)
  
@@ -41,14 +41,17 @@ const LoginPage = () => {
     let newData = await axios.post("http://localhost:8000/signin",sendThisJSON)
     .then((data)=>{
       waitForData=data.data;
-      if(waitForData){
-        console.log("authenticated?",waitForData);
+      if(waitForData.result==="verified"){
+        console.log("authenticated?",waitForData.result);
         setLogin(true);
         setSignIn(false);
+        setCurrentUser(waitForData.info);
+        console.log("the current user is :",waitForData.info.username);
+        
 
       }else{
-        setLogin(false);
-        setSignIn(false);
+        // setLogin(false);
+        // setSignIn(false);
       }
       
    
@@ -134,6 +137,8 @@ const LoginPage = () => {
   );
 
   const renderSignUpForm = (
+    
+
     <div className="form">
       <form onSubmit={handleRegister}>
       <h1>Register</h1>
@@ -179,23 +184,44 @@ const LoginPage = () => {
         
         {login ? 
         <>
-        <div className="flex flex-col">
-          <h1 className="text-black text-center">Welcome Prince</h1>
+        <div className="flex flex-col w-[1000px] h-[500px] relative items-center">
+          <h1 className="text-black text-center" >Welcome {currentUser.name}</h1>
           <Link to={'/'}>
-          <button className='text-white bg-black content-center m-2'>
-            Navigate to Homepage
-          </button>
-          
+            <button className='text-white bg-black content-center m-2'>
+              Navigate to Homepage
+            </button>
+        
           </Link>
+
+          <div className="space-y-5">
+            {currentUser.cart.map((item,id)=>{
+              return(<div key={id} className="border-solid border-2 border-black rounded-md h-[70px] w-[900px] flex text-black items-center justify-between">
+                <div className="w-[500px] h-[20px] text-center">{item}</div>
+                <button className="m-5">cancel order</button>
+                </div>)
+              
+
+            })}
+            
+          </div>
+          <div className="w-[1000px]">
+            <button className='text-white bg-black content-center m-2 absolute bottom-5 right-5'
+            onClick={()=>{
+              setLogin(false);
+              setSignIn(true);
+              console.log("before logout",currentUser);
+              setCurrentUser({});
+              console.log("after logout:",currentUser);
+              
+              
+              }}>
+              Logout
+            </button>
+
+          </div>
        
   
-          <button className='text-white bg-black content-center m-2'
-          onClick={()=>{
-            setLogin(false);
-            setSignIn(true);
-            }}>
-            Logout
-          </button>
+          
 
         </div>
         
@@ -212,7 +238,7 @@ const LoginPage = () => {
         
         </>
       </div>
-      <h1 className="text-black">{cart.map((item)=>{
+      {/* <h1 className="text-black">{cart.map((item)=>{
         return (
           <div className="flex ">
             <h1>{item.attributes.title}</h1>
@@ -220,7 +246,7 @@ const LoginPage = () => {
           </div>
           
         )
-      })}</h1>
+      })}</h1> */}
     </div>
   );
 }

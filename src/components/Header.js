@@ -20,7 +20,7 @@ import { LoginContext } from '../context/LoginContext';
 
 const Header = () => {
   const { isOpen, setIsOpen, itemsAmount } = useContext(CartContext);
-  const { login, setLogin } = useContext(LoginContext);
+  const { login, setLogin, currentUser } = useContext(LoginContext);
   const [catNavMobile, setCatnavMobile] = useState(false);
   
   return (
@@ -72,7 +72,7 @@ const Header = () => {
             {/* login icon  */}
             <div className='flex flex-col justify-center'>
             <Link to='/login' className='flex justify-center'>
-              {login ? <div>Prince &nbsp;</div>:''}
+              {login ? <div>{currentUser.name}</div>:''}
              
             <div>
               <BiUser className='text-2xl' />

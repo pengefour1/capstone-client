@@ -1,0 +1,15 @@
+.chaticon {
+    color:rgb(240, 196, 4);
+    height:40px;
+    width:40px;
+    bottom:5px;
+    right:5px;
+    position:fixed;
+    cursor:pointer;
+}
+
+.chaticon :hover{
+    transform: scaleZ(0.5);
+    color: black;
+    
+}

@@ -21,4 +21,5 @@
   .input {
     @apply h-[50px] rounded-[8px] w-full outline-none px-6 text-primary;
   }
+  
 }
