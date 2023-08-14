@@ -14,7 +14,8 @@ const LoginPage = () => {
   const {cart} = useContext(CartContext)
   const {login, setLogin, currentUser, setCurrentUser} = useContext(LoginContext)
   const [signIn, setSignIn] = useState(true);
-  const [signUp, setSignUp] = useState(false)
+  const [signUp, setSignUp] = useState(false);
+  
  
   
  
@@ -90,8 +91,9 @@ const LoginPage = () => {
     }
     ).then(()=>{
       console.log('registered');
-      setLogin(true);
+      setLogin(false);
       setSignUp(false);
+      setSignIn(true);
     })
 
     if(newData){
@@ -194,7 +196,8 @@ const LoginPage = () => {
           </Link>
 
           <div className="space-y-5">
-            {currentUser.cart.map((item,id)=>{
+            
+            {currentUser?.cart?.map((item,id)=>{
               return(<div key={id} className="border-solid border-2 border-black rounded-md h-[70px] w-[900px] flex text-black items-center justify-between">
                 <div className="w-[500px] h-[20px] text-center">{item}</div>
                 <button className="m-5">cancel order</button>
