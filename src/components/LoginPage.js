@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 
 import { Link} from "react-router-dom";
 import axios from "axios";
@@ -9,18 +9,38 @@ import '../../src/styles.css'
 import {LoginContext} from "../context/LoginContext";
 import { CartContext } from "../context/CartContext";
 
+
+
+
+
 const LoginPage = () => {
-  // React States
-  const {cart} = useContext(CartContext)
-  const {login, setLogin, currentUser, setCurrentUser} = useContext(LoginContext)
-  const [signIn, setSignIn] = useState(true);
-  const [signUp, setSignUp] = useState(false);
-  
- 
-  
- 
 
   
+  // React States
+  const {cart} = useContext(CartContext)
+
+  const {login, setLogin, currentUser, setCurrentUser,forceRender} = useContext(LoginContext)
+  const [signIn, setSignIn] = useState(true);
+  const [signUp, setSignUp] = useState(false);
+  const [renderCount, setRenderCount] = useState(['empty'])
+  let cartFetchData = []
+
+  let cartFetchJSON = {
+    "username":currentUser.username,
+  }
+
+  useEffect(()=>{
+    axios.post('http://localhost:8000/cart',cartFetchJSON).then((data)=>{
+      
+      cartFetchData=data.data.cart;
+      console.log(cartFetchData);
+      setRenderCount(cartFetchData);
+    });
+  },[forceRender])
+  
+ 
+  
+
 
   const handleSubmit = async (event) => {
  
@@ -180,9 +200,10 @@ const LoginPage = () => {
 
   return (
     <div className="app">
+      
       <div className="login-form ">
         <>
-  
+        
         
         {login ? 
         <>
@@ -194,19 +215,11 @@ const LoginPage = () => {
             </button>
         
           </Link>
+          
+          
+          
 
-          <div className="space-y-5">
-            
-            {currentUser?.cart?.map((item,id)=>{
-              return(<div key={id} className="border-solid border-2 border-black rounded-md h-[70px] w-[900px] flex text-black items-center justify-between">
-                <div className="w-[500px] h-[20px] text-center">{item}</div>
-                <button className="m-5">cancel order</button>
-                </div>)
-              
-
-            })}
-            
-          </div>
+          
           <div className="w-[1000px]">
             <button className='text-white bg-black content-center m-2 absolute bottom-5 right-5'
             onClick={()=>{
@@ -220,6 +233,7 @@ const LoginPage = () => {
               }}>
               Logout
             </button>
+            
 
           </div>
        
@@ -241,15 +255,32 @@ const LoginPage = () => {
         
         </>
       </div>
-      {/* <h1 className="text-black">{cart.map((item)=>{
+      {/* <h1 className="text-black">
+      {currentUser.cart.map((item)=>{
         return (
           <div className="flex ">
-            <h1>{item.attributes.title}</h1>
+            <h1>{item}</h1>
             <h1>&nbsp; arriving in 3 days</h1>
           </div>
           
         )
       })}</h1> */}
+      { login ? 
+      <div className="space-y-5">
+        {console.log("rendercount",renderCount)}
+       
+          {
+          renderCount.map((item)=>{
+            
+            return(<div  className="border-solid border-2 border-black rounded-md h-[70px] w-[900px] flex text-black items-center justify-between">
+              <h1 className="w-[500px] h-[20px] text-center">{item}</h1>
+              
+              <button className="m-5">cancel order</button>
+              </div>)
+          })}
+          
+        </div>
+: ''}
     </div>
   );
 }

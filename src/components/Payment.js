@@ -12,7 +12,7 @@ const Payment = () => {
     const [cvv, setCvv] = useState('')
     const [focus, setFocus] = useState('')
     const {cart}= useContext(CartContext)
-    const {currentUser} = useContext(LoginContext)
+    const {currentUser,forceRender,setForceRender} = useContext(LoginContext)
 
     async function saveToCart (){
       let arr=[];
@@ -73,7 +73,11 @@ const Payment = () => {
               
         </form>
         <Link to='/login'>
-//        <button className='text-black ' onClick={()=>saveToCart()}>pay</button>
+//        <button className='text-black ' onClick={()=>{
+  saveToCart();
+  setForceRender(forceRender+1);
+
+  }}>pay</button>
 //      </Link>
 
       </div>
