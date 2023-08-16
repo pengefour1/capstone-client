@@ -32,9 +32,9 @@ const Payment = () => {
     }
 
   return (
-    <div className='flex justify-center'>
-      <div className=' w-[300px] flex flex-col justify-center items-center pt-[200px]'>
-        <form className='flex flex-col justify-center'>
+    <div className='flex justify-center '>
+      <div className=' w-[300px] flex flex-col justify-center items-center pt-[200px] '>
+        <form className='flex flex-col justify-center border-solid border-3 border-black'>
           <input className=' p-1 h-10 text-black' 
               type='tel'
               name='number'
@@ -73,7 +73,7 @@ const Payment = () => {
               
         </form>
         <Link to='/login'>
-//        <button className='text-black ' onClick={()=>{
+//        <button className='text-black bg-yellow-500 w-[100px] m-2 rounded-md' onClick={()=>{
   saveToCart();
   setForceRender(forceRender+1);
 

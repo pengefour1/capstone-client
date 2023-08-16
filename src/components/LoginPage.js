@@ -213,6 +213,22 @@ const LoginPage = () => {
             <button className='text-white bg-black content-center m-2'>
               Navigate to Homepage
             </button>
+            { login ? 
+      <div className="space-y-5">
+        {console.log("rendercount",renderCount)}
+       
+          {
+          renderCount?.map((item)=>{
+            
+            return(<div  className="border-solid border-2 border-black rounded-md h-[70px] w-[900px] flex text-black items-center justify-between">
+              <h1 className="w-[500px] h-[20px] text-center">{item}</h1>
+              
+              <button className="m-5">cancel order</button>
+              </div>)
+          })}
+          
+        </div>
+: ''}
         
           </Link>
           
@@ -265,22 +281,7 @@ const LoginPage = () => {
           
         )
       })}</h1> */}
-      { login ? 
-      <div className="space-y-5">
-        {console.log("rendercount",renderCount)}
-       
-          {
-          renderCount.map((item)=>{
-            
-            return(<div  className="border-solid border-2 border-black rounded-md h-[70px] w-[900px] flex text-black items-center justify-between">
-              <h1 className="w-[500px] h-[20px] text-center">{item}</h1>
-              
-              <button className="m-5">cancel order</button>
-              </div>)
-          })}
-          
-        </div>
-: ''}
+      
     </div>
   );
 }
