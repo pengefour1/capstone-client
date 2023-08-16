@@ -1,9 +1,10 @@
 import { useState } from 'react'
 import './Chat.css'
+
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from '@chatscope/chat-ui-kit-react';
 
-const API_KEY = "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";
+
 
 
 const systemMessage = {
@@ -69,7 +70,7 @@ function Chat() {
     {
       method: "POST",
       headers: {
-        "Authorization": "Bearer " + API_KEY,
+        "Authorization": "Bearer " + process.env.CHAT_API_KEY,
         "Content-Type": "application/json"
       },
       body: JSON.stringify(apiRequestBody)
