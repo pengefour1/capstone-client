@@ -28,9 +28,9 @@ const LoginPage = () => {
   let cartFetchJSON = {
     "username":currentUser.username,
   }
-
+  // 'http://localhost:8000/cart'
   useEffect(()=>{
-    axios.post('http://localhost:8000/cart',cartFetchJSON).then((data)=>{
+    axios.post('https://capstone-server-hmpt0q1b8-pengefour1.vercel.app/cart',cartFetchJSON).then((data)=>{
       
       cartFetchData=data.data.cart;
       console.log(cartFetchData);
@@ -58,8 +58,9 @@ const LoginPage = () => {
     console.log(sendThisJSON)
     var waitForData=false;
     
-    
-    let newData = await axios.post("http://localhost:8000/signin",sendThisJSON)
+    // "http://localhost:8000/signin"
+
+    let newData = await axios.post('https://capstone-server-hmpt0q1b8-pengefour1.vercel.app/signin',sendThisJSON)
     .then((data)=>{
       waitForData=data.data;
       if(waitForData.result==="verified"){
@@ -100,8 +101,9 @@ const LoginPage = () => {
     var number = document.getElementById('number').value;
     var address = document.getElementById('address').value;
     
-    
-    let newData = await axios.post("http://localhost:8000/signup",
+    // "http://localhost:8000/signup"
+
+    let newData = await axios.post('https://capstone-server-hmpt0q1b8-pengefour1.vercel.app/',
     {
       username:username,
       password:password,
@@ -216,7 +218,6 @@ const LoginPage = () => {
             { login ? 
       <div className="space-y-5">
         {console.log("rendercount",renderCount)}
-       
           {
           renderCount?.map((item)=>{
             
@@ -232,9 +233,6 @@ const LoginPage = () => {
         
           </Link>
           
-          
-          
-
           
           <div className="w-[1000px]">
             <button className='text-white bg-black content-center m-2 absolute bottom-5 right-5'

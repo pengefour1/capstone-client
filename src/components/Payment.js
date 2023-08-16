@@ -25,7 +25,8 @@ const Payment = () => {
         username:currentUser.username,
         cart:arr,
       }
-      await axios.post('http://localhost:8000/update',packedData).then(()=>console.log('updated cart'));
+      // 'http://localhost:8000/update'
+      await axios.post('https://capstone-server-hmpt0q1b8-pengefour1.vercel.app/update',packedData).then(()=>console.log('updated cart'));
       
 
 
