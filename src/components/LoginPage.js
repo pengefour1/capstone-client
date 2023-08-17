@@ -30,7 +30,7 @@ const LoginPage = () => {
   }
   // 'http://localhost:8000/cart'
   useEffect(()=>{
-    axios.post('https://capstone-server-hmpt0q1b8-pengefour1.vercel.app/cart',cartFetchJSON).then((data)=>{
+    axios.post('https://check-versel-85ez8xbdo-pengefour1.vercel.app/cart',cartFetchJSON).then((data)=>{
       
       cartFetchData=data.data.cart;
       console.log(cartFetchData);
@@ -60,7 +60,7 @@ const LoginPage = () => {
     
     // "http://localhost:8000/signin"
 
-    let newData = await axios.post('https://capstone-server-hmpt0q1b8-pengefour1.vercel.app/signin',sendThisJSON)
+    let newData = await axios.post('https://check-versel-85ez8xbdo-pengefour1.vercel.app/signin',sendThisJSON)
     .then((data)=>{
       waitForData=data.data;
       if(waitForData.result==="verified"){
@@ -103,7 +103,7 @@ const LoginPage = () => {
     
     // "http://localhost:8000/signup"
 
-    let newData = await axios.post('https://capstone-server-hmpt0q1b8-pengefour1.vercel.app/',
+    let newData = await axios.post('https://check-versel-85ez8xbdo-pengefour1.vercel.app/signup',
     {
       username:username,
       password:password,
