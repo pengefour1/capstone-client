@@ -28,9 +28,9 @@ const LoginPage = () => {
   let cartFetchJSON = {
     "username":currentUser.username,
   }
-  // 'http://localhost:8000/cart'
+  // ''
   useEffect(()=>{
-    axios.post('https://check-versel-85ez8xbdo-pengefour1.vercel.app/cart',cartFetchJSON).then((data)=>{
+    axios.post('http://localhost:8000/cart',cartFetchJSON).then((data)=>{
       
       cartFetchData=data.data.cart;
       console.log(cartFetchData);
@@ -58,9 +58,9 @@ const LoginPage = () => {
     console.log(sendThisJSON)
     var waitForData=false;
     
-    // "http://localhost:8000/signin"
+    // ""
 
-    let newData = await axios.post('https://check-versel-85ez8xbdo-pengefour1.vercel.app/signin',sendThisJSON)
+    let newData = await axios.post('http://localhost:8000/signin',sendThisJSON)
     .then((data)=>{
       waitForData=data.data;
       if(waitForData.result==="verified"){
@@ -101,9 +101,9 @@ const LoginPage = () => {
     var number = document.getElementById('number').value;
     var address = document.getElementById('address').value;
     
-    // "http://localhost:8000/signup"
+    // ""
 
-    let newData = await axios.post('https://check-versel-85ez8xbdo-pengefour1.vercel.app/signup',
+    let newData = await axios.post('http://localhost:8000/signup',
     {
       username:username,
       password:password,

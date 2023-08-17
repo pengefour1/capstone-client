@@ -25,8 +25,8 @@ const Payment = () => {
         username:currentUser.username,
         cart:arr,
       }
-      // 'http://localhost:8000/update'
-      await axios.post('https://check-versel-85ez8xbdo-pengefour1.vercel.app/update',packedData).then(()=>console.log('updated cart'));
+      // ''
+      await axios.post('http://localhost:8000/update',packedData).then(()=>console.log('updated cart'));
       
 
 
