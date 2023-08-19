@@ -1,15 +1,16 @@
+
 import { useState } from 'react'
 import './Chat.css'
+
 
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from '@chatscope/chat-ui-kit-react';
 
 
 
-
 const systemMessage = {
   "role": "system",
-  "content": "Explain things like you're talking to a software professional with 2 years of experience."
+  "content": "Explain things like you're talking to a customer "
 }
 
 function Chat() {
@@ -70,7 +71,7 @@ function Chat() {
     {
       method: "POST",
       headers: {
-        "Authorization": "Bearer " + process.env.CHAT_API_KEY,
+        "Authorization": "Bearer " + "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",
         "Content-Type": "application/json"
       },
       body: JSON.stringify(apiRequestBody)

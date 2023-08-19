@@ -90,7 +90,7 @@ const Cart = () => {
               clear cart
             </button>
             <Link to={'/payment'}>
-            <button className='btn btn-accent hover:bg-accent-hover text-primary flex-1 px-2 gap-x-2'
+            <button onClick={()=>setIsOpen(false)} className='btn btn-accent hover:bg-accent-hover text-primary flex-1 px-2 gap-x-2'
             >
               Checkout
               <IoArrowForward className='text-lg' />

@@ -11,7 +11,7 @@ const Payment = () => {
     const [expiry, setExpiry] = useState('')
     const [cvv, setCvv] = useState('')
     const [focus, setFocus] = useState('')
-    const {cart}= useContext(CartContext)
+    const {cart, clearCart}= useContext(CartContext)
     const {currentUser,forceRender,setForceRender} = useContext(LoginContext)
 
     async function saveToCart (){
@@ -27,6 +27,8 @@ const Payment = () => {
       }
       // ''
       await axios.post('http://localhost:8000/update',packedData).then(()=>console.log('updated cart'));
+      clearCart();
+      
       
 
 
